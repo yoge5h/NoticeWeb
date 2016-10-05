@@ -1,0 +1,6 @@
+.run of app.js
+all console.logs
+implemented a localStorage service in service.js
+removed $rootScope.isLogin from all controllers
+header.html added class smallScreenFontColor for font color in small screen
+site.css implemented that class

@@ -1,0 +1,7 @@
+﻿<div class="container container-sub">
+    <uib-tabset active="activeTabIndex">
+      <uib-tab active="activeTabIndex==$index" ng-repeat="tab in tabs" heading="{{tab.title}}">
+          <div class="tab-content" ng-include="tab.template"></div>
+      </uib-tab>
+    </uib-tabset>
+</div>

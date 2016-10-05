@@ -1,0 +1,37 @@
+﻿<div class="modal-header">
+    <button type="button" class="close" ng-click="close()" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title" id="modal-title">{{mode}} User</h4>
+</div>
+<div class="modal-body" id="modal-body">
+    <div class="row">
+        <div class="col-xs-12">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-4 left-align" for="userName">User Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="userName" placeholder="Enter user name" required ng-model="user.userName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4 left-align" for="firstName">First Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="firstName" placeholder="Enter first name" required ng-model="user.firstName">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-4 left-align" for="lastName">First Name</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control" id="lastName" placeholder="Enter last name" required ng-model="user.lastName">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="resetPassword()" ng-if="mode == 'Edit'">Reset Password</button>
+    <button class="btn btn-primary" type="button" ng-click="saveUser()" ng-disabled="((user.userName == undefined)||(user.firstName == undefined)||(user.lastName == undefined))">Save</button>
+    <button class="btn btn-warning" type="button" ng-click="close()">Cancel</button>
+</div>

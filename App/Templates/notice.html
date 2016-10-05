@@ -1,0 +1,49 @@
+﻿<div class="container container-sub">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8">
+            <form class="form-horizontal">
+                <div class="form-group"> 
+                    <div class="col-sm-offset-2 col-sm-12">
+                        <div class="checkbox col-sm-2">
+                            <label><input type="checkbox" ng-model="message.sendEmail"> Email</label>
+                        </div>
+                         <div class="checkbox col-sm-5">
+                            <label><input type="checkbox" ng-model="message.sendToMobile"> Mobile Notification</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2 left-align" for="sendTo">To</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="sendTo" ng-model="message.to" convert-to-number>
+                            <option ng-repeat="section in sections" value={{section.id}}>{{section.name}}</option>
+                        </select>
+                    </div>
+                </div>               
+                <div class="form-group">
+                    <label class="control-label col-sm-2 left-align" for="subject">Subject</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="subject" placeholder="Enter Subject" required ng-model="message.subject">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2 left-align" for="message">Message</label>
+                    <div class="col-sm-10"> 
+                        <textarea class="form-control" id="message" rows="10" ng-model="message.message"></textarea>
+                    </div>
+                </div>  
+                <div class="form-group">
+                    <label class="control-label col-sm-2 left-align" for="message">Attachment</label>
+                    <div class="col-sm-10">
+                        <input type="file" accept=".png,.jpeg" class="form-control" id="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" valid-file ng-model="filename" multiple/>
+                    </div>
+                </div>              
+                <div class="form-group"> 
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button ng-click="sendMessage()" class="btn btn-primary" ng-disabled="message.subject === undefined || message.to === undefined">Send</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

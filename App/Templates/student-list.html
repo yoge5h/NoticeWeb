@@ -1,0 +1,49 @@
+﻿<div class="row tab-row-content">
+    <div class="col-sm-4">
+        <button class="btn btn-primary" ng-click="addStudent()">Add Student</button>
+    </div>
+    <div class="col-sm-8">
+        <form class="form-horizontal">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="control-label col-sm-2 left-align" for="section">Section</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="section" ng-model="selectedStudent.section" ng-change="getStudentsForSection()" convert-to-number>
+                            <option ng-repeat="section in sections" value={{section.id}}>{{section.name}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <div class="col-sm-10 col-sm-offset-2">
+                        <input type="text" class="form-control" id="subject" placeholder="Search here..." ng-model="searchStudents">
+                    </div>
+                </div>
+            </div>   
+        </form>       
+    </div>
+</div>
+<div class="row tab-row-content">
+    <div class="col-xs-12">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th ng-repeat="header in studentHeadings">{{header}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="student in students | filter: searchStudents">
+                    <td>{{student.firstName}}</td>
+                    <td>{{student.lastName}}</td>
+                    <td>{{student.email}}</td>
+                    <td>{{student.phone}}</td>
+                    <td>
+                        <span class="clickable glyphicon glyphicon-edit" uib-tooltip="Edit student." ng-click="editStudent(student)"></span>&nbsp;&nbsp;
+                        <span class="clickable glyphicon glyphicon-trash" uib-tooltip="Delete student."></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>    
+    </div>
+</div>

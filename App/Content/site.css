@@ -1,0 +1,193 @@
+﻿body {
+    background-color:#eeeeee;
+}
+.navbar{
+    background-color: #2593e5;    
+}
+
+.navbar-nav > li > a{
+    color:#fff !important;
+}
+
+.navbar-toggle.collapsed {
+  background-color: #eeeeee;  
+  color:#555 !important;
+}
+
+.navbar-default .navbar-nav > .active > a {
+  background-color: #eeeeee;  
+  color:#555 !important;
+}
+
+.navbar-default .navbar-nav > .active > a:focus {
+  background: #eeeeee; 
+}
+
+.dropdown.open > a {
+  background-color: #eeeeee;  
+  color:#555 !important;
+}
+
+.navbar-brand {
+    padding:0px 15px 0px 0px;
+}
+
+.container-sub {
+    padding-top:75px;
+}
+
+.left-align {
+    text-align:left !important;
+}
+
+.clickable {
+    cursor:pointer !important;
+}
+
+.tab-row-content {
+    padding:10px 10px 10px 10px;
+    margin-left:0px !important;
+}
+
+.tab-pane {
+   border-style: solid;
+   border-width: 0px 1px 1px 1px;
+   border-color:#e6e6e6;
+}
+
+th {
+    background-color: #2593e5;
+    opacity: .9;
+    color: #FFF;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 45px;
+    background-color: #2593e5;/*#eeeeee;*/
+    padding-top: 15px;
+    font-size:small;
+    color:#fff;
+}
+
+.redBackground{
+    background-color:#e23237;
+    color:#fff;
+}
+
+.loading{
+    opacity:0.85;
+    -moz-opacity:0.85;
+    filter:alpha(opacity=45);
+    background-image: url(../Images/loading.gif);
+    background-repeat: no-repeat;
+    background-position: center;  
+    position:absolute;
+    height:100%;
+    width:100%;
+    z-index:20;
+    /*background-color: #eeeeee;*/
+}
+
+@media only screen and (max-width: 992px) {
+    .container-sub {
+    padding-top:160px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .footer {
+        position: relative !important;
+        padding-top: 0px;
+    }
+    .container-sub {
+        padding-top:75px;
+    }
+    .smallScreenFontColor{
+        color:#FFF !important;
+    }
+}
+/*login form*/
+.form-signin
+{
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading, .form-signin .checkbox
+{
+    margin-bottom: 10px;
+}
+.form-signin .checkbox
+{
+    font-weight: normal;
+    padding-left:20px;
+}
+.form-signin .form-control
+{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-signin .form-control:focus
+{
+    z-index: 2;
+}
+.form-signin input[type="text"]
+{
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"]
+{
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+.account-wall
+{
+    margin-top: 20px;
+    padding: 40px 0px 20px 0px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+.login-title
+{
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+}
+.profile-img
+{
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.need-help
+{
+    margin-top: 10px;
+}
+.download-app
+{
+    display: block;
+    margin-top: 20px;
+    font-size:medium;
+}
+
+/*login form end*/
+
+

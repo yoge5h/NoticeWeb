@@ -1,0 +1,24 @@
+﻿<div class="row tab-row-content">
+    <div class="col-xs-6 col-sm-4">
+        <button class="btn btn-primary" ng-click="addSubject()">Add Subject</button>
+    </div>
+</div>
+<div class="row tab-row-content">
+    <div class="col-xs-12 col-sm-8">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th ng-repeat="header in subjectHeadings">{{header}}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="subject in subjects">
+                    <td>{{subject.code}}</td>
+                    <td>{{subject.name}}</td>
+                    <td>{{subject.section}}</td>
+                    <td><span class="clickable glyphicon glyphicon-edit" uib-tooltip="Edit subject." ng-click="editSubject(subject)"></span>&nbsp;&nbsp;<span class="clickable glyphicon glyphicon-trash" uib-tooltip="Delete subject."></span></td>
+                </tr>
+            </tbody>
+        </table>    
+    </div>
+</div>
