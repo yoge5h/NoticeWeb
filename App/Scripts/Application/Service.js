@@ -30,30 +30,6 @@ angular.module('NOTICE.services', ['ngResource','ngStorage'])
             { id: 1, userName: 'YOGAD', firstName: 'Yogesh', lastName: 'Adhikari' },
             { id: 2, userName: 'LUNYA', firstName: 'Lunish', lastName: 'Yakami' },
             { id: 3, userName: 'UJJSI', firstName: 'Ujjwal', lastName: 'Silwal' },
-        ],
-        attendancereport: [
-            {
-                student: 'Yogesh Adhikari',
-                attendance: [
-                    { subject: "Micro Economics", attendance: 90 },
-                    { subject: "Human Resource Management", attendance: 92 },
-                    { subject: "Business Management", attendance: 88 },
-                    { subject: "Business Statistics", attendance: 82 },
-                    { subject: "Management Accounting", attendance: 88 },
-                    { subject: "Managerial Communication", attendance: 85 },
-                ]
-            },
-            {
-                student: 'Lunish Yakami',
-                attendance: [
-                    { subject: "Micro Economics", attendance: 94 },
-                    { subject: "Human Resource Management", attendance: 82 },
-                    { subject: "Business Management", attendance: 86 },
-                    { subject: "Business Statistics", attendance: 83 },
-                    { subject: "Management Accounting", attendance: 98 },
-                    { subject: "Managerial Communication", attendance: 79 },
-                ]
-            }
         ]
     };
     var sections = [];
@@ -190,6 +166,9 @@ angular.module('NOTICE.services', ['ngResource','ngStorage'])
         },
         resetPassword: function () {
 
+        },
+        changePassword: function (passwordInfo) {
+
         }
     }
 }])
@@ -200,6 +179,9 @@ angular.module('NOTICE.services', ['ngResource','ngStorage'])
         },
         amendStudent: function (attendance) {
             
+        },
+        getStudentsBySection: function (sectionId) {
+
         }
     };
 }])
@@ -220,6 +202,104 @@ angular.module('NOTICE.services', ['ngResource','ngStorage'])
         },
         amendSection: function (attendance) {
 
+        }
+    };
+}])
+.factory('reportService', ['$http', function ($http) {
+    var attendancereportSection = [
+            {
+                student: 'Yogesh Adhikari',
+                attendance: [
+                    { subject: "Micro Economics", attendance: 90 },
+                    { subject: "Human Resource Management", attendance: 92 },
+                    { subject: "Business Management", attendance: 88 },
+                    { subject: "Business Statistics", attendance: 82 },
+                    { subject: "Management Accounting", attendance: 88 },
+                    { subject: "Managerial Communication", attendance: 85 },
+                ]
+            },
+            {
+                student: 'Lunish Yakami',
+                attendance: [
+                    { subject: "Micro Economics", attendance: 94 },
+                    { subject: "Human Resource Management", attendance: 82 },
+                    { subject: "Business Management", attendance: 86 },
+                    { subject: "Business Statistics", attendance: 83 },
+                    { subject: "Management Accounting", attendance: 98 },
+                    { subject: "Managerial Communication", attendance: 79 },
+                ]
+            }
+    ];
+    var attendancereportStudent = [
+           {
+               date: '2016/10/6',
+               subject: 'Micro Economics',
+               isPresent:true
+           },
+           {
+               date: '2016/10/7',
+               subject: 'Human Resource Management',
+               isPresent: false
+           },
+           {
+               date: '2016/10/8',
+               subject: 'Business Management',
+               isPresent: true
+           },
+           {
+               date: '2016/10/9',
+               subject: 'Business Statistics',
+               isPresent: true
+           },
+           {
+               date: '2016/10/10',
+               subject: 'Management Accounting',
+               isPresent: false
+           }
+               
+    ];
+
+    return {
+        getAttendanceReport: function (criteria, callback) {
+            if(criteria.reportType === 1)
+                return callback(attendancereportSection);
+            return callback(attendancereportStudent);
+        },
+        getStudets: function (sectionId) {
+            return [
+                { 'id': 1, firstName: 'Yogesh', lastName: 'Adhikari' },
+                { 'id': 2, firstName: 'Lunish', lastName: 'Yakami' },
+                { 'id': 3, firstName: 'Gautam', lastName: 'Manandhar' },
+                { 'id': 4, firstName: 'Ujjwal', lastName: 'Silwal' },
+            ];
+        }
+    }
+}])
+.factory("cacheService1", ["$http", function ($http) {   
+    var sections = [];
+    var subjects = [];
+    var users = []
+    return {
+        getSections: function (success) {
+            if (sections.length == 0) {
+
+            }
+            return sections;
+        },
+        getSubjects: function () {
+            if (subjects.length == 0) {
+
+            }
+            return subjects;
+        },
+        getStudents: function (id) {
+            
+        },
+        getUsers: function () {
+            if (users.length == 0) {
+
+            }
+            return users;
         }
     };
 }])

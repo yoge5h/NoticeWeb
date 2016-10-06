@@ -77,6 +77,10 @@ th {
     color:#fff;
 }
 
+.greenBackground{
+    background-color:#2bd831;
+}
+
 .loading{
     opacity:0.85;
     -moz-opacity:0.85;

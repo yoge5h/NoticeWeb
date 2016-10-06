@@ -101,9 +101,11 @@ angular.module("NOTICE", ["ui.router", "NOTICE.controllers", "NOTICE.services"])
                                 addStudentModal: '/App/Templates/Modal/addStudent.html'
                             }
                         },
-                       
                         sections: ['cacheService', function (cacheService) {
                             return cacheService.getSections();
+                        }],
+                        subjects: ['cacheService', function (cacheService) {
+                            return cacheService.getSubjects();
                         }]                      
                     }
                 }
@@ -121,7 +123,10 @@ angular.module("NOTICE", ["ui.router", "NOTICE.controllers", "NOTICE.services"])
                                 userModal: "/App/Templates/Modal/addUser.html"
                             }
 
-                        }
+                        },
+                        users: ['cacheService', function (cacheService) {
+                            return cacheService.getUsers();
+                        }]
                     }
                 }
             }

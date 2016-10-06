@@ -4,3 +4,4 @@ implemented a localStorage service in service.js
 removed $rootScope.isLogin from all controllers
 header.html added class smallScreenFontColor for font color in small screen
 site.css implemented that class
+report template to add student report

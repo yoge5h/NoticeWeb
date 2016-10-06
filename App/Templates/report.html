@@ -12,6 +12,23 @@
                     </div>
                 </div>
             </div>
+            <div class="col-xs-8 col-sm-4">
+                <div class="form-group">
+                    <label class="control-label col-sm-2 left-align" for="type">Type</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="type" ng-model="report.reportType" ng-change="getStudents();" convert-to-number>
+                            <option ng-repeat="type in ReportTypes" value={{type.id}}>{{type.type}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-8 col-sm-3" ng-if="report.reportType == 2">
+                <div class="form-group">
+                    <div class="col-sm-12" typeahead-demo>
+                        <input autocomplete="off" type="text" class="form-control" placeholder="Student's Name" ng-model="report.student" uib-typeahead="student as student.firstName +' ' + student.lastName for student in students | studentSearchFilter: $viewValue | limitTo:8" />
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="row">
             <div class="col-xs-8 col-sm-5">
@@ -48,7 +65,7 @@
     </form>
 
 
-    <div class="row" ng-if="reportData.length > 0">
+    <div class="row" ng-if="reportData.length > 0 && report.reportType === 1">
         <div class="col-xs-12" set-max-height>
             <table class="table table-striped table-bordered">
                 <thead>
@@ -61,6 +78,26 @@
                     <tr ng-repeat="report in reportData">
                         <td>{{report.student}}</td>
                         <td ng-repeat="attendance in report.attendance" ng-class="{'redBackground' : attendance.attendance < 80}">{{attendance.attendance}} %</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" ng-if="reportData.length > 0 && report.reportType === 2">
+        <div class="col-xs-12" set-max-height>
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Subject</th>
+                        <th>Attendance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="report in reportData">
+                        <td>{{report.date}}</td>
+                        <td>{{report.subject}}</td>
+                        <td ng-class="{'redBackground' : !report.isPresent, 'greenBackground': report.isPresent}"></td>
                     </tr>
                 </tbody>
             </table>

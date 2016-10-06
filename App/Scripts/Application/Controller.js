@@ -110,10 +110,10 @@ angular.module('NOTICE.controllers', ['ui.bootstrap'])
     $scope.sections = sections;
     
 }])
-.controller("UserController", ["$scope", "$rootScope", "template", "cacheService", "$uibModal", function ($scope, $rootScope, template, cacheService, $uibModal) {
+.controller("UserController", ["$scope", "$rootScope", "template", "users", "$uibModal", function ($scope, $rootScope, template, users, $uibModal) {
     $scope.users = {};
     $scope.userHeadings = ["User Name", "First Name", "Last Name", "Action"];
-    $scope.users = cacheService.getUsers();
+    $scope.users = users;
 
     $scope.addUser = function () {
         openModel(template.userModal, 'SaveUserController', {}, 'Add', 'md')
@@ -155,8 +155,8 @@ angular.module('NOTICE.controllers', ['ui.bootstrap'])
 
     };
 }])
-.controller("StudentsController", ["$scope", "$rootScope", "tabs", "templates", "cacheService", "$uibModal", "sections"
-    , function ($scope, $rootScope, tabs, templates, cacheService, $uibModal, sections) {
+.controller("StudentsController", ["$scope", "$rootScope", "tabs", "templates", "cacheService", "$uibModal", "sections","subjects"
+    , function ($scope, $rootScope, tabs, templates, cacheService, $uibModal, sections, subjects) {
     $scope.tabs = tabs;
 
     $scope.sectionHeadings = ["Section Name", "Action"];
@@ -172,9 +172,9 @@ angular.module('NOTICE.controllers', ['ui.bootstrap'])
         $scope.students = cacheService.getStudents($scope.selectedStudent.section);
     }
    
-    $scope.subjects = cacheService.getSubjects();
+    $scope.subjects = subjects;
       
-    $scope.students = cacheService.getStudents($scope.selectedStudent.section);
+    //$scope.students = cacheService.getStudents($scope.selectedStudent.section);
 
     $scope.addSection = function () {
         openModel(templates.addSectionModal, 'SectionController', {}, 'Add','sm')
@@ -266,9 +266,10 @@ angular.module('NOTICE.controllers', ['ui.bootstrap'])
         attendanceService.saveAttendance($scope.attendance);
     }
 }])
-.controller("ReportController", ["$scope", "$rootScope", "cacheService", "sections", function ($scope, $rootScope, cacheService, sections) {
+.controller("ReportController", ["$scope", "$rootScope", "reportService", "sections", function ($scope, $rootScope, reportService, sections) {
     $scope.report = {
-        section:-1,
+        section: -1,
+        reportType:1,
         toDate: new Date(),
         fromDate: new Date(),
         isFromStart: true
@@ -276,20 +277,39 @@ angular.module('NOTICE.controllers', ['ui.bootstrap'])
    
    
     $scope.sections = sections;
+    $scope.ReportTypes = [
+        { 'id': 1, type: 'Section Report' },
+        { 'id': 2, type: 'Student Report' }
+    ];
     if (sections.length > 0) {
         $scope.report.section = $scope.sections[0].id;
     }
    
     $scope.getAttendanceReport = function () {
+        if (typeof $scope.report.student !== 'object' && $scope.report.reportType === 2) {
+            window.Application.toast.show('error', 'Please select a student.');
+            return;
+        }
         $scope.allSubjects = [];
-        $scope.reportData = cacheService.getAttendanceReport();
-        if ($scope.reportData.length > 0) {
-            angular.forEach($scope.reportData[0].attendance, function (item, index) {
-                if ($scope.allSubjects.indexOf(item.subject) === -1)
-                $scope.allSubjects.push(item.subject);
-            })
-        };
+        reportService.getAttendanceReport($scope.report, function (reportData) {
+            $scope.reportData = reportData;
+            if ($scope.report.reportType === 1) {
+                if (reportData.length > 0) {
+                    angular.forEach(reportData[0].attendance, function (item, index) {
+                        if ($scope.allSubjects.indexOf(item.subject) === -1)
+                            $scope.allSubjects.push(item.subject);
+                    });
+                };
+            };
+        });
     };
+
+    $scope.getStudents = function () {
+        $scope.reportData = [];
+        if($scope.report.reportType === 2)
+            $scope.students = reportService.getStudets($scope.report.section)
+    }
+
     $scope.datePickerFrom = {
         opened: false
     };
@@ -305,13 +325,13 @@ angular.module('NOTICE.controllers', ['ui.bootstrap'])
     
 
 }])
-.controller("PasswordController", ["$scope",  "$uibModalInstance", function ($scope,  $uibModalInstance) {
+.controller("PasswordController", ["$scope", "$uibModalInstance", "userService", function ($scope, $uibModalInstance, userService) {
     $scope.password = {};
     $scope.close = function () {
         $uibModalInstance.close('ok');
     };
     $scope.changePassword = function () {
-
+        userService.changePassword($scope.password);
     };
    
 }])
@@ -429,7 +449,26 @@ angular.module('NOTICE.controllers', ['ui.bootstrap'])
         }
     };
 
-}]);
+}])
+
+.filter('studentSearchFilter', function () {
+    return function (students, search) {
+        var out = [];
+        if (search != undefined)
+            var searchString = search.toLowerCase();
+        if (!angular.isDefined(searchString) || searchString == '') {
+            return students;
+        }
+        angular.forEach(students, function (student, index) {
+            if ((student.firstName.toLowerCase().indexOf(searchString) != -1)
+                || (student.lastName.toLowerCase().indexOf(searchString) != -1)                
+                || ((student.firstName + ' ' + student.lastName).toLowerCase().indexOf(searchString)) != -1) {
+                out.push(student);
+            }
+        });
+        return out;
+    }
+});
 
 
 
