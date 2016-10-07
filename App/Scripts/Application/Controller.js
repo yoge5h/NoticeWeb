@@ -57,10 +57,8 @@ angular.module('NOTICE.controllers', ['ui.bootstrap'])
     };
 
     $scope.logout = function () {
-        authenticationService.logout(function () {
-            $localStorage.store('token', '');
-            $location.path("/login");
-        });
+        $localStorage.store('token', '');
+        $location.path("/login");
     };
 
     $scope.changePassword = function () {
@@ -469,6 +467,3 @@ angular.module('NOTICE.controllers', ['ui.bootstrap'])
         return out;
     }
 });
-
-
-

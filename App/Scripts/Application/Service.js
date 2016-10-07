@@ -98,12 +98,7 @@ angular.module('NOTICE.services', ['ngResource','ngStorage'])
         signin: function (data, success, error) {
             //$http.post(urls.BASE + '/signin', data).success(success).error(error)
             //console.log(data);
-        },
-        logout: function (success) {
-            tokenClaims = {};
-            delete $localStorage.token;
-            success();
-        },
+        },       
         getTokenClaims: function () {
             return tokenClaims;
         }

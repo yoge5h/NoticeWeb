@@ -66,7 +66,7 @@ th {
     bottom: 0;
     width: 100%;
     height: 45px;
-    background-color: #2593e5;/*#eeeeee;*/
+    background-color: #2593e5;
     padding-top: 15px;
     font-size:small;
     color:#fff;
@@ -92,7 +92,6 @@ th {
     height:100%;
     width:100%;
     z-index:20;
-    /*background-color: #eeeeee;*/
 }
 
 @media only screen and (max-width: 992px) {
@@ -113,7 +112,7 @@ th {
         color:#FFF !important;
     }
 }
-/*login form*/
+
 .form-signin
 {
     max-width: 330px;
@@ -191,7 +190,3 @@ th {
     margin-top: 20px;
     font-size:medium;
 }
-
-/*login form end*/
-
-
